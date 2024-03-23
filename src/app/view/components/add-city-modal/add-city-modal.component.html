@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Hi there!</h4>
+  <h4 class="modal-title">Add a new city to track</h4>
   <button
     type="button"
     class="btn-close"
@@ -8,7 +8,12 @@
   ></button>
 </div>
 <div class="modal-body">
-  <p>Hello!</p>
+  <select class="form-select" aria-label="Default select example">
+    <option selected>Select the country</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
 </div>
 <div class="modal-footer">
   <button
@@ -17,5 +22,12 @@
     (click)="activeModal.close('Close click')"
   >
     Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="activeModal.close('Close click')"
+  >
+    Add
   </button>
 </div>

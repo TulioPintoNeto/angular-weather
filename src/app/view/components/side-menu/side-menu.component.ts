@@ -14,8 +14,7 @@ import { AddCityModalComponent } from '../add-city-modal/add-city-modal.componen
 export class SideMenuComponent {
   private modalService = inject(NgbModal);
 
-  open() {
-    console.log('opening');
+  open = () => {
     this.modalService.open(AddCityModalComponent);
   }
 }
