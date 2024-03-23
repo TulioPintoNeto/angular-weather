@@ -1,7 +1,38 @@
 <div class="p-4 main-content d-flex flex-column">
   <app-header />
   <div class="row d-flex flex-fill pt-4">
-    <div class="col-8">asd</div>
+    <div class="col-8">
+      <div class="trends-grid">
+        <app-weather-metrics-trend
+          value="2.1"
+          unit="from 220°"
+          label="Wind Speed"
+        />
+        <app-weather-metrics-trend value="10000" unit="m" label="Visibility" />
+        <app-weather-metrics-trend
+          value="282.38"
+          unit="°F"
+          label="Temperature"
+        />
+        <app-weather-metrics-trend
+          value="279.83"
+          unit="°F"
+          label="Feel Like"
+        />
+        <app-weather-metrics-trend
+          value="281.48"
+          unit="°F"
+          label="Minimum Temperature"
+        />
+        <app-weather-metrics-trend
+          value="285.15"
+          unit="°F"
+          label="Maximum Temperature"
+        />
+        <app-weather-metrics-trend value="1026" unit="Pa" label="Pressure" />
+        <app-weather-metrics-trend value="76" unit="%" label="Humidity" />
+      </div>
+    </div>
     <div class="col-4"><app-weather-details /></div>
   </div>
 </div>
