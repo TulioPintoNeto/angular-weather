@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClickableRowComponent } from '../clickable-row/clickable-row.component';
+import { ClickableRowComponent } from './clickable-row/clickable-row.component';
 
 @Component({
   selector: 'app-side-menu',
