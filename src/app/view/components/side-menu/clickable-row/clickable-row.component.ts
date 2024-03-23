@@ -10,4 +10,5 @@ import { Component, Input } from '@angular/core';
 export class ClickableRowComponent {
   @Input() iconClass: string = 'bi bi-geo-alt';
   @Input({ required: true }) text!: string;
+  @Input({ required: true }) onClick!: Function;
 }
