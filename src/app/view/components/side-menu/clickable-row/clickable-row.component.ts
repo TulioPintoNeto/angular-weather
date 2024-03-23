@@ -9,5 +9,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ClickableRowComponent {
   @Input() iconClass: string = 'bi bi-geo-alt';
-  @Input() text: string = '';
+  @Input({ required: true }) text!: string;
 }
