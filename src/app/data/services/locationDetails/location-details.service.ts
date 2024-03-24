@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,21 +8,18 @@ import { Injectable } from '@angular/core';
 export class LocationDetailsService {
   constructor(private httpClient: HttpClient) {}
 
-  get(city: City) {
-    this.httpClient.get(this.buildPath(city)).subscribe();
-  
-    // const data: LocationDetailsModel = ;
-  
-    // return this.toLocationDetails(city, data);
-
+  get(city: City): Observable<LocationDetails> {
+    return this.httpClient
+      .get<LocationDetailsModel>(this.buildPath(city))
+      .pipe(map(this.toLocationDetails(city)));
   }
 
   private buildPath({ name, country: { code } }: City) {
     return `https://api.openweathermap.org/data/2.5/weather?q=${name},${code}&appid=`;
   }
 
-  private toLocationDetails(city: City, data: LocationDetailsModel): LocationDetails {
-    return {
+  private toLocationDetails(city: City) {
+    return (data: LocationDetailsModel): LocationDetails => ({
       ...city,
       coordinates: {
         longitude: data.coord.lon,
@@ -48,10 +46,10 @@ export class LocationDetailsService {
         wind: data.wind.speed,
         windDirection: data.wind.deg,
       },
-    };
+    });
   }
 
   private parseTime(time: number): Date {
     return new Date(time * 1000);
-  };
+  }
 }
