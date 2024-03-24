@@ -14,15 +14,20 @@ import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent {
   private offcanvasService = inject(NgbOffcanvas);
   _selectedLocation: LocationDetails | null = null;
+  _selectedLocationPreviousState: LocationDetails | undefined;
 
   constructor(private globalControllerService: GlobalControllerService) {}
-  
-	openDrawer(content: TemplateRef<any>) {
-		this.offcanvasService.open(content);
-	}
+
+  openDrawer(content: TemplateRef<any>) {
+    this.offcanvasService.open(content);
+  }
 
   setLocation(locationDetails: LocationDetails) {
     this._selectedLocation = locationDetails;
+    this._selectedLocationPreviousState =
+      this.globalControllerService.previousLocationsDetails.find(
+        ({ id }) => locationDetails.id
+      );
     this.globalControllerService.update(locationDetails);
   }
 
@@ -30,5 +35,9 @@ export class HomeComponent {
     return (
       this._selectedLocation || this.globalControllerService.locationsDetails[0]
     );
+  }
+
+  get selectedLocationPreviousState(): LocationDetails | undefined {
+    return this._selectedLocationPreviousState;
   }
 }

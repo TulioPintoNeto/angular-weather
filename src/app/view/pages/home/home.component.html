@@ -25,5 +25,8 @@
   <div class="d-none d-xl-flex">
     <app-side-menu (updateLocationEvent)="setLocation($event)"></app-side-menu>
   </div>
-  <app-main-content [locationDetails]="selectedLocation"></app-main-content>
+  <app-main-content
+    [locationDetails]="selectedLocation"
+    [selectedLocationPreviousState]="selectedLocationPreviousState"
+  ></app-main-content>
 </div>

@@ -2,10 +2,7 @@ import { Component, Input, numberAttribute } from '@angular/core';
 import { CardComponent } from '../../card/card.component';
 import { CommonModule } from '@angular/common';
 
-type ValueState = {
-  old?: number;
-  new?: number;
-}
+type Trend = 'increased' | 'same' | 'decreased';
 
 @Component({
   selector: 'app-weather-metrics-trend',
@@ -17,37 +14,27 @@ type ValueState = {
 export class WeatherMetricsTrendComponent {
   @Input({ required: true })
   label!: string;
-  
+
   @Input({ required: true })
   unit!: string;
-  
+
   @Input({ required: true, transform: numberAttribute })
   value: number | undefined;
-  
 
-  trend: 'increased' | 'same' | 'decreased' = 'same';
-  
-  private valueState: ValueState = {};
+  @Input({ transform: numberAttribute })
+  oldValue: number | undefined;
 
-  updateValueState() {
-    this.valueState.old = this.valueState.new;
-    this.valueState.new = this.value;
-  }
-
-  updateTrend() {
-    if (!this.valueState.old || !this.valueState.new) {
-      this.trend = 'same';
-      return;
+  get trend(): Trend {
+    if (!this.oldValue || !this.value) {
+      return 'same';
     }
 
-    if (this.valueState.new > this.valueState.old) {
-      this.trend = 'increased';
+    if (this.value === this.oldValue) {
+      return 'same';
     }
-    if (this.valueState.new === this.valueState.old) {
-      this.trend = 'same';
+    if (this.value > this.oldValue) {
+      return 'increased';
     }
-    if (this.valueState.new < this.valueState.old) {
-      this.trend = 'decreased';
-    }
+    return 'decreased';
   }
 }

@@ -17,4 +17,7 @@ import { WeatherMetricsTrendComponent } from './weather-metrics-trend/weather-me
 export class MainContentComponent {
   @Input({ required: true })
   locationDetails: LocationDetails | null = null;
+
+  @Input({ required: true })
+  selectedLocationPreviousState: LocationDetails | undefined;
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnChanges, SimpleChanges } from '@angular/core';
 import { LocationDetailsService } from '../../data/services/locationDetails/location-details.service';
 import { Subscription, interval, mergeMap } from 'rxjs';
 
@@ -14,6 +14,7 @@ const initialCity = {
 export class GlobalControllerService {
   private _cities: City[] = [initialCity];
   private _locationDetailsList: LocationDetails[] = [];
+  private _previousLocationDetailsList: LocationDetails[] = [];
   private subscription: Subscription | null = null;
 
   constructor(private locationDetailsService: LocationDetailsService) {
@@ -57,17 +58,34 @@ export class GlobalControllerService {
 
   private updateInPosition(index: number, locationDetails: LocationDetails) {
     const old = this._locationDetailsList[index];
+    const hasNotChanged =
+      old.infoTimestamp.getTime() === locationDetails.infoTimestamp.getTime();
 
-    if (
-      old.infoTimestamp.getTime() === locationDetails.infoTimestamp.getTime()
-    ) {
+    if (hasNotChanged) {
       return;
     }
 
+    this.updateOldList(old);
     this._locationDetailsList[index] = locationDetails;
+  }
+
+  private updateOldList(locationDetails: LocationDetails) {
+    const previousListIndex = this._previousLocationDetailsList.findIndex(
+      ({ id }) => id === locationDetails.id
+    );
+
+    if (previousListIndex === -1) {
+      this._previousLocationDetailsList.push(locationDetails);
+    } else {
+      this._previousLocationDetailsList[previousListIndex] = locationDetails;
+    }
   }
 
   get locationsDetails() {
     return this._locationDetailsList;
+  }
+
+  get previousLocationsDetails() {
+    return this._previousLocationDetailsList;
   }
 }
