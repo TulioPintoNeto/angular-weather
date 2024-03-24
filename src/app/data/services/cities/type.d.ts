@@ -1,0 +1,1 @@
+type CityModel = Omit<City, 'country'>;

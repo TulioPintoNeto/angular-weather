@@ -1,11 +1,14 @@
 .row-button {
   background: transparent;
-  color: white;
   border: none;
+  color: white;
+  display: flex;
   padding: 0;
+  width: 100%;
 }
 
 .text {
+  text-align: left;
   flex: 1;
 }
 

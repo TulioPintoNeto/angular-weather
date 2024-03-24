@@ -3,7 +3,7 @@ import { AutoUpdateComponent } from './auto-update/auto-update.component';
 import { ClickableRowComponent } from './clickable-row/clickable-row.component';
 import { NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddCityModalComponent } from '../add-city-modal/add-city-modal.component';
-import { CitiesService } from '../../services/cities.service';
+import { GlobalControllerService } from '../../controllers/global-controller.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
@@ -20,16 +20,22 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class SideMenuComponent {
   private modalService = inject(NgbModal);
-  citiesText: string[] = this.citiesService.cities.map(this.cityToCityText);
 
-  constructor(private citiesService: CitiesService) {}
+  constructor(private citiesController: GlobalControllerService) {}
 
   open() {
-    console.log('he');
     this.modalService.open(AddCityModalComponent);
   }
 
-  cityToCityText({ name, country }: City): string {
-    return `${name}, ${country.code} - 283.23 °F`;
+  get citiesText() {
+    return this.citiesController.locationsDetails.map(this.cityToCityText);
+  }
+
+  cityToCityText({
+    name,
+    country,
+    weatherConditions: { temperature },
+  }: LocationDetails): string {
+    return `${name}, ${country.code} - ${temperature} °F`;
   }
 }

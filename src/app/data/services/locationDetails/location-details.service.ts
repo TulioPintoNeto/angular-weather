@@ -15,7 +15,7 @@ export class LocationDetailsService {
   }
 
   private buildPath({ name, country: { code } }: City) {
-    return `https://api.openweathermap.org/data/2.5/weather?q=${name},${code}&appid=`;
+    return `https://api.openweathermap.org/data/2.5/weather?q=${name},${code}&appid=75f924392f73a9b5af78644ac4254410`;
   }
 
   private toLocationDetails(city: City) {

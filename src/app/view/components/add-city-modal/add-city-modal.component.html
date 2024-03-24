@@ -1,33 +1,45 @@
-<div class="modal-header">
-  <h4 class="modal-title">Add a new city to track</h4>
-  <button
-    type="button"
-    class="btn-close"
-    aria-label="Close"
-    (click)="activeModal.dismiss('Cross click')"
-  ></button>
-</div>
-<div class="modal-body">
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Select the country</option>
-    @for(country of countries; track country.code) {
-      <option [value]="country.code">{{country.name}}</option>
-    }
-  </select>
-</div>
-<div class="modal-footer">
-  <button
-    type="button"
-    class="btn btn-outline-dark"
-    (click)="activeModal.close('Close click')"
-  >
-    Close
-  </button>
-  <button
-    type="button"
-    class="btn btn-outline-primary"
-    (click)="activeModal.close('Close click')"
-  >
-    Add
-  </button>
-</div>
+<form [formGroup]="addCityForm">
+  <div class="modal-header">
+    <h4 class="modal-title">Choose a city to track</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="activeModal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <select
+      class="form-select mb-3"
+      aria-label="Select the country to have a cities list"
+      formControlName="country"
+    >
+      <option value="">Select the country</option>
+      @for(country of countries; track country.code) {
+      <option [value]="country.code">{{ country.name }}</option>
+      }
+    </select>
+    <input
+      id="typeahead-prevent-manual-entry"
+      type="text"
+      class="form-control"
+      formControlName="city"
+      [ngbTypeahead]="search"
+      [inputFormatter]="formatter"
+      [resultFormatter]="formatter"
+      [editable]="false"
+    />
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="activeModal.close()"
+    >
+      Close
+    </button>
+    <button type="button" class="btn btn-outline-primary" (click)="onSubmit()">
+      Add
+    </button>
+  </div>
+</form>

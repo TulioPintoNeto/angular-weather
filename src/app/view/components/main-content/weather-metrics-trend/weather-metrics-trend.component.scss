@@ -1,11 +1,12 @@
 :host {
   display: flex;
-}
+  height: 100%;
+  width: 100%;
 
-.wrapper {
-  min-width: 155px;
-  height: 60px;
-  width: 160px;
+  & > * {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .value {

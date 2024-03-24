@@ -1,19 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
-import { readJson } from '../../core/readJson';
+import { Observable, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GetCitiesService {
-  constructor() {}
+export class CitiesService {
+  constructor(private httpClient: HttpClient) {}
 
-  get(country: Country): Observable<Omit<City, 'country'>[]> {
-    const promise = readJson<Omit<City, 'country'>[]>(this.buildPath(country));
-    return from(promise);
+  get(country: Country): Observable<City[]> {
+    return this.httpClient
+      .get<CityModel[]>(this.buildPath(country))
+      .pipe(map(this.toCities(country)));
   }
 
   private buildPath(country: Country) {
-    return `./cities/${country.code}.city.list.json`;
+    return `/assets/cities/${country.code}.city.list.json`;
+  }
+
+  private toCities(country: Country) {
+    return (cities: CityModel[]): City[] =>
+      cities.map((city) => ({
+        ...city,
+        country,
+      }));
   }
 }
