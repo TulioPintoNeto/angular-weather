@@ -1,7 +1,7 @@
 <div class="p-4 main-content d-flex flex-column">
   <div class="constrained-container">
     <app-header [locationDetails]="locationDetails" />
-    <div class="row d-flex flex-fill pt-4 flex-nowrap">
+    <div class="row d-flex flex-fill pt-4 flex-nowrap main-content-body">
       <div class="trends-grid">
         <app-weather-metrics-trend
           [value]="locationDetails?.weatherConditions?.wind?.toFixed(1)"

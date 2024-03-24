@@ -13,15 +13,35 @@
 .constrained-container {
   max-width: 1400px;
   margin: 0 auto;
+  padding-top: 60px;
+
+  @include lg {
+    padding-top: 0;
+  }
+}
+
+.main-content-body {
+  flex-direction: column;
+  gap: 24px;
+  
+  @include md {
+    flex-direction: row;
+    gap: 0;
+  }
 }
 
 .trends-grid {
   align-items: stretch;
   display: grid;
   gap: 24px;
-  grid-template-columns: repeat(2, 220px);
-  grid-template-rows: repeat(4, 130px);
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(8, 130px);
   flex-shrink: 1;
+  
+  @include sm {
+    grid-template-columns: repeat(2, 220px);
+    grid-template-rows: repeat(4, 130px);
+  }
 
   @include xxl {
     grid-template-columns: repeat(3, 220px);

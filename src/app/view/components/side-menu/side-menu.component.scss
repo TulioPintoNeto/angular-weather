@@ -13,14 +13,19 @@ $padding: 24px;
   color: white;
   min-height: 100vh;
   padding: $padding;
-  min-width: $width;
   width: 100%;
+  
+  @include sm {
+    min-width: $width;
+  }
 }
 
 .side-menu-content {
-  min-width: calc($width - 2 * $padding);
-  
   padding-top: 40px;
+  
+  @include sm {
+    min-width: calc($width - 2 * $padding);
+  }
 
   @include xl {
     padding-top: 0;

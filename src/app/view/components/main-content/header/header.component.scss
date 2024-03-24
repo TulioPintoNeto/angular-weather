@@ -1,3 +1,15 @@
+@import "../../../styles/breakpoints";
+
+.header-left-items {
+  align-items: flex-start;
+  flex-direction: column;
+
+  @include sm {
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
 .title {
   font-weight: 800;
 }
