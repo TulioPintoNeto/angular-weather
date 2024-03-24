@@ -15,9 +15,15 @@ type ValueState = {
   styleUrl: './weather-metrics-trend.component.scss',
 })
 export class WeatherMetricsTrendComponent {
-  @Input({ required: true }) label!: string;
-  @Input({ required: true }) unit!: string;
-  @Input({ required: true, transform: numberAttribute }) value!: number;
+  @Input({ required: true })
+  label!: string;
+  
+  @Input({ required: true })
+  unit!: string;
+  
+  @Input({ required: true, transform: numberAttribute })
+  value!: number;
+  
 
   trend: 'increased' | 'same' | 'decreased' = 'same';
   

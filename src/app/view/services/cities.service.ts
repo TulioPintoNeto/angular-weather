@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class CitiesService {
   cities: City[] = [
-    { country: 'GB', name: 'London', id: 1 },
-    { country: 'DE', name: 'Munich', id: 2 },
-    { country: 'BR', name: 'São Paulo', id: 3 },
+    { country: { code: 'GB', name: 'United Kingdom' }, name: 'London', id: 1 },
+    { country: { code: 'DE', name: 'Germany' }, name: 'Munich', id: 2 },
+    { country: { code: 'BR', name: 'Brazil' }, name: 'São Paulo', id: 3 },
   ];
 
   constructor() {}

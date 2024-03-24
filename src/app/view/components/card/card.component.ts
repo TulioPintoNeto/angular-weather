@@ -9,6 +9,10 @@ import { Component, Input, booleanAttribute } from '@angular/core';
   styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  @Input() fullHeight: boolean = false;
-  @Input() padding: boolean = true;
+  @Input()
+  fullHeight: boolean = false;
+
+  @Input()
+  padding: boolean = true;
+
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-clickable-row',
@@ -8,7 +8,16 @@ import { Component, Input } from '@angular/core';
   styleUrl: './clickable-row.component.scss',
 })
 export class ClickableRowComponent {
-  @Input() iconClass: string = 'bi bi-geo-alt';
-  @Input({ required: true }) text!: string;
-  @Input({ required: true }) onClick!: Function;
+  @Input()
+  iconClass: string = 'bi bi-geo-alt';
+  
+  @Input({ required: true })
+  text!: string;
+
+  @Output()
+  handleEvent = new EventEmitter();
+
+  onClick() {
+    this.handleEvent.emit();
+  }
 }
