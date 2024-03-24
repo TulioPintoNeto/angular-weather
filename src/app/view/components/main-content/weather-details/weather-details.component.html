@@ -3,20 +3,24 @@
   <div class="p-4 pt-2 details-content">
     <div class="mb-4">
       <p class="mb-2 fw-bold">General</p>
-      <p class="mb-1">Updated At: 23/11/2024 16:06</p>
-      <p class="mb-1">Sunrise: 07:00</p>
-      <p class="mb-1">Sunset: 17:00</p>
-      <p class="mb-1">Timezone: 0</p>
+      <p class="mb-1">Updated At: {{ formatDateTime(locationDetails?.infoTimestamp) }}</p>
+      <p class="mb-1">Sunrise: {{ formatHourMin(locationDetails?.sunnyTime?.sunrise) }}</p>
+      <p class="mb-1">Sunset: {{ formatHourMin(locationDetails?.sunnyTime?.sunset) }}</p>
+      <p class="mb-1">Timezone: {{ locationDetails?.timezone }}</p>
     </div>
     <div class="mb-4">
       <p class="mb-2 fw-bold">Coordinates</p>
-      <p class="mb-1">Longitude: -0.13</p>
-      <p class="mb-1">Latidude: 51.51</p>
+      <p class="mb-1">
+        Longitude: {{ locationDetails?.coordinates?.longitude?.toFixed(2) }}
+      </p>
+      <p class="mb-1">
+        Latidude: {{ locationDetails?.coordinates?.latitude?.toFixed(2) }}
+      </p>
     </div>
     <div>
       <p class="mb-2 fw-bold">Weather</p>
-      <p class="mb-1">Clouds 75%</p>
-      <p class="mb-1">Broken clouds</p>
+      <p class="mb-1">Clouds {{ locationDetails?.weather?.clouds }}%</p>
+      <p class="mb-1 first-letter-capitalized">{{ locationDetails?.weather?.skyStatus }}</p>
     </div>
   </div>
 </app-card>

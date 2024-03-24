@@ -1,4 +1,4 @@
 <div class="d-flex">
-  <app-side-menu></app-side-menu>
-  <app-main-content></app-main-content>
+  <app-side-menu (updateLocationEvent)="setLocation($event)"></app-side-menu>
+  <app-main-content [locationDetails]="selectedLocation"></app-main-content>
 </div>

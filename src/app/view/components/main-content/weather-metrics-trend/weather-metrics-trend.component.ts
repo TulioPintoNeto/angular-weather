@@ -22,7 +22,7 @@ export class WeatherMetricsTrendComponent {
   unit!: string;
   
   @Input({ required: true, transform: numberAttribute })
-  value!: number;
+  value: number | undefined;
   
 
   trend: 'increased' | 'same' | 'decreased' = 'same';

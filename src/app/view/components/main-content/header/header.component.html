@@ -1,12 +1,18 @@
 <div class="align-items-center d-flex justify-content-between">
   <div class="align-items-center d-flex gap-4">
-    <h4 class="text-uppercase title mb-0">London, UK</h4>
+    <h4 class="text-uppercase title mb-0">
+      {{ locationDetails?.name || "-" }},
+      {{ locationDetails?.country?.code || "-" }}
+    </h4>
 
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><i class="bi bi-house icon"></i></li>
         <li class="breadcrumb-item">Dashboard</li>
-        <li class="breadcrumb-item current-breadcrumb-item">London, UK</li>
+        <li class="breadcrumb-item current-breadcrumb-item">
+          {{ locationDetails?.name || "-" }},
+          {{ locationDetails?.country?.code || "-" }}
+        </li>
       </ol>
     </nav>
   </div>

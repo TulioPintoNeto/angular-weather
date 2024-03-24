@@ -1,7 +1,14 @@
 <div class="side-menu p-4">
-  <app-clickable-row iconClass="bi bi-house" text="Add New City" (handleEvent)="open()" />
-  @for (text of citiesText; track text) {
-    <app-clickable-row [text]="text" (handleEvent)="open()" />
+  <app-clickable-row
+    iconClass="bi bi-house"
+    text="Add New City"
+    (handleEvent)="open()"
+  />
+  @for (locationDetails of locationsDetails; track locationDetails.id) {
+  <app-clickable-row
+    [text]="cityToCityText(locationDetails)"
+    (handleEvent)="onRowClick(locationDetails)"
+  />
   }
   <app-auto-update />
 </div>

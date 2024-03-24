@@ -27,7 +27,6 @@ export class GlobalControllerService {
     this.locationDetailsService.get(city).subscribe({
       next: (locationDetails) => {
         this._locationDetailsList.push(locationDetails);
-        console.log(this._locationDetailsList);
       },
     });
 

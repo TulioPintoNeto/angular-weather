@@ -1,28 +1,50 @@
 <div class="p-4 main-content d-flex flex-column">
-  <app-header />
+  <app-header [locationDetails]="locationDetails" />
   <div class="row d-flex flex-fill pt-4 flex-nowrap">
     <div class="trends-grid">
       <app-weather-metrics-trend
-        value="2.1"
+        [value]="locationDetails?.weatherConditions?.wind?.toFixed(1)"
         unit="from 220°"
         label="Wind Speed"
       />
-      <app-weather-metrics-trend value="10000" unit="m" label="Visibility" />
-      <app-weather-metrics-trend value="282.38" unit="°F" label="Temperature" />
-      <app-weather-metrics-trend value="279.83" unit="°F" label="Feel Like" />
       <app-weather-metrics-trend
-        value="281.48"
+        [value]="locationDetails?.weatherConditions?.visibility"
+        unit="m"
+        label="Visibility"
+      />
+      <app-weather-metrics-trend
+        [value]="locationDetails?.weatherConditions?.temperature"
+        unit="°F"
+        label="Temperature"
+      />
+      <app-weather-metrics-trend
+        [value]="locationDetails?.weatherConditions?.feelsLike"
+        unit="°F"
+        label="Feel Like"
+      />
+      <app-weather-metrics-trend
+        [value]="locationDetails?.weatherConditions?.temperatureMin"
         unit="°F"
         label="Minimum Temperature"
       />
       <app-weather-metrics-trend
-        value="285.15"
+        [value]="locationDetails?.weatherConditions?.temperatureMax"
         unit="°F"
         label="Maximum Temperature"
       />
-      <app-weather-metrics-trend value="1026" unit="Pa" label="Pressure" />
-      <app-weather-metrics-trend value="76" unit="%" label="Humidity" />
+      <app-weather-metrics-trend
+        [value]="locationDetails?.weatherConditions?.pressure"
+        unit="Pa"
+        label="Pressure"
+      />
+      <app-weather-metrics-trend
+        [value]="locationDetails?.weatherConditions?.humidity"
+        unit="%"
+        label="Humidity"
+      />
     </div>
-    <div class="flex-fill"><app-weather-details /></div>
+    <div class="flex-fill">
+      <app-weather-details [locationDetails]="locationDetails" />
+    </div>
   </div>
 </div>

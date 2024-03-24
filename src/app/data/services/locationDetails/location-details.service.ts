@@ -30,7 +30,7 @@ export class LocationDetailsService {
         sunrise: this.parseTime(data.sys.sunrise),
         sunset: this.parseTime(data.sys.sunset),
       },
-      timezone: data.timezone,
+      timezone: data.timezone / 3600,
       weather: {
         skyStatus: data.weather[0].description,
         clouds: data.clouds.all,
