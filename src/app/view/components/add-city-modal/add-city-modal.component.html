@@ -9,20 +9,24 @@
     ></button>
   </div>
   <div class="modal-body">
+    <label class="mb-1" for="country">Select a country</label>
     <select
       class="form-select mb-3"
       aria-label="Select the country to have a cities list"
+      id="country"
       formControlName="country"
     >
-      <option value="">Select the country</option>
+      <option value="" disabled>Please select</option>
       @for(country of countries; track country.code) {
       <option [value]="country.code">{{ country.name }}</option>
       }
     </select>
+    <label class="mb-1" for="city">Select a city</label>
     <input
-      id="typeahead-prevent-manual-entry"
+      id="city"
       type="text"
       class="form-control"
+      placeholder="Type to search for a city"
       formControlName="city"
       [ngbTypeahead]="search"
       [inputFormatter]="formatter"
