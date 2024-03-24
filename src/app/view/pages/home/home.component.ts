@@ -17,9 +17,12 @@ export class HomeComponent {
 
   setLocation(locationDetails: LocationDetails) {
     this._selectedLocation = locationDetails;
+    this.globalControllerService.update(locationDetails);
   }
 
   get selectedLocation(): LocationDetails | null {
-    return this._selectedLocation || this.globalControllerService.locationsDetails[0];
+    return (
+      this._selectedLocation || this.globalControllerService.locationsDetails[0]
+    );
   }
 }

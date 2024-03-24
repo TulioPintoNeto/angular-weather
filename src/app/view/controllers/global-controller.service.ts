@@ -26,10 +26,25 @@ export class GlobalControllerService {
   update(city: City) {
     this.locationDetailsService.get(city).subscribe({
       next: (locationDetails) => {
-        this._locationDetailsList.push(locationDetails);
+        const cityIndex = this._locationDetailsList.findIndex(({ id }) => id === locationDetails.id);
+
+        if (cityIndex === -1) {
+          this._locationDetailsList.push(locationDetails);
+        } else {
+          this.updateInPosition(cityIndex, locationDetails);
+        }
       },
     });
+  }
 
+  private updateInPosition(index: number, locationDetails: LocationDetails) {
+    const old = this._locationDetailsList[index];
+
+    if (old.infoTimestamp.getTime() === locationDetails.infoTimestamp.getTime()) {
+      return;
+    }
+
+    this._locationDetailsList[index] = locationDetails;
   }
 
   get locationsDetails() {
