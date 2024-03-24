@@ -41,7 +41,7 @@ export class AddCityModalComponent implements OnInit {
   constructor(
     private countriesService: CountriesService,
     private citiesService: CitiesService,
-    private citiesControllerService: GlobalControllerService
+    private globalController: GlobalControllerService
   ) {}
 
   ngOnInit(): void {
@@ -107,16 +107,27 @@ export class AddCityModalComponent implements OnInit {
       filter((term) => term.length >= 2),
       map((term) =>
         this.cities
-          .filter(({ name }) => new RegExp(term, 'mi').test(name))
+          .filter(this.searchFilter(term))
           .slice(0, 10)
       )
     );
+
+  private searchFilter(term: string) {
+    return ({ name }: City): boolean => {
+      const matchesTerm = new RegExp(term, 'mi').test(name);
+      const isNotBeingTrack = this.globalController.locationsDetails.every(
+        (locationDetails) => locationDetails.name !== name
+      );
+
+      return matchesTerm && isNotBeingTrack;
+    };
+  }
 
   onSubmit() {
     const city: City = this.addCityForm.value.city;
 
     if (city) {
-      this.citiesControllerService.add(city);
+      this.globalController.add(city);
       this.activeModal.close();
     }
   }
