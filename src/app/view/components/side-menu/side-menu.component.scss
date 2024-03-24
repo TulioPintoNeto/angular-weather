@@ -1,6 +1,29 @@
+@import '../../styles/breakpoints';
+@import '../../styles/constants';
+
+:host {
+  display: flex;
+}
+
+$width: 350px;
+$padding: 24px;
+
 .side-menu {
-  background: #2F3C4E;
+  background: $darkBlue;
   color: white;
-  height: 100vh;
-  width: 350px;
+  min-height: 100vh;
+  padding: $padding;
+  min-width: $width;
+  width: 100%;
+}
+
+.side-menu-content {
+  min-width: calc($width - 2 * $padding);
+  
+  padding-top: 40px;
+
+  @include xl {
+    padding-top: 0;
+    position: fixed;
+  }
 }

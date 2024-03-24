@@ -1,4 +1,29 @@
 <div class="d-flex">
-  <app-side-menu (updateLocationEvent)="setLocation($event)"></app-side-menu>
+  <div class="d-xl-none">
+    <button
+      aria-label="Open menu"
+      class="btn d-flex align-items-center justify-content-center position-absolute open-drawer-button"
+      (click)="openDrawer(content)"
+      type="button"
+    >
+      <i class="bi bi-list"></i>
+    </button>
+    <ng-template #content let-offcanvas>
+      <button
+        aria-label="Close menu"
+        class="btn d-flex align-items-center justify-content-center position-absolute close-drawer-button"
+        (click)="offcanvas.dismiss()"
+        type="button"
+      >
+        <i class="bi bi-x"></i>
+      </button>
+      <app-side-menu
+        (updateLocationEvent)="setLocation($event)"
+      ></app-side-menu>
+    </ng-template>
+  </div>
+  <div class="d-none d-xl-flex">
+    <app-side-menu (updateLocationEvent)="setLocation($event)"></app-side-menu>
+  </div>
   <app-main-content [locationDetails]="selectedLocation"></app-main-content>
 </div>

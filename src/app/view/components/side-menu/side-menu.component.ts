@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { AutoUpdateComponent } from './auto-update/auto-update.component';
 import { ClickableRowComponent } from './clickable-row/clickable-row.component';
-import { NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddCityModalComponent } from '../add-city-modal/add-city-modal.component';
 import { GlobalControllerService } from '../../controllers/global-controller.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
     AutoUpdateComponent,
     ClickableRowComponent,
     HttpClientModule,
-    NgbDatepickerModule,
   ],
   templateUrl: './side-menu.component.html',
   styleUrl: './side-menu.component.scss',

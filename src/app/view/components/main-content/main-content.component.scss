@@ -1,3 +1,5 @@
+@import "../../styles/breakpoints";
+
 :host {
   flex: 1;
 }
@@ -5,13 +7,24 @@
 .main-content {
   background: #f8f8f8;
   flex: 1;
-  height: 100vh;
+  min-height: 100vh;
 }
+
+.constrained-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 .trends-grid {
   align-items: stretch;
   display: grid;
-  grid-template-columns: repeat(3, 204px);
-  grid-template-rows: repeat(3, 130px);
   gap: 24px;
+  grid-template-columns: repeat(2, 220px);
+  grid-template-rows: repeat(4, 130px);
   flex-shrink: 1;
+
+  @include xxl {
+    grid-template-columns: repeat(3, 220px);
+    grid-template-rows: repeat(3, 130px);
+  }
 }
