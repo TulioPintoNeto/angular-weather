@@ -1,4 +1,4 @@
 <div class="py-2 d-flex gap-3 align-items-center wrapper">
-  <input type="checkbox" id="auto-update" />
+  <input type="checkbox" id="auto-update" (change)="onChange($event)" />
   <label for="auto-update">Auto Update Per Minute</label>
 </div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocationDetailsService } from '../../data/services/locationDetails/location-details.service';
+import { Subscription, interval, mergeMap } from 'rxjs';
 
 const initialCity = {
   country: { code: 'GB', name: 'United Kingdom' },
@@ -13,6 +14,7 @@ const initialCity = {
 export class GlobalControllerService {
   private _cities: City[] = [initialCity];
   private _locationDetailsList: LocationDetails[] = [];
+  private subscription: Subscription | null = null;
 
   constructor(private locationDetailsService: LocationDetailsService) {
     this.update(initialCity);
@@ -23,10 +25,26 @@ export class GlobalControllerService {
     this.update(city);
   }
 
+  setAutoUpdated(status: boolean) {
+    if (status) {
+      this.subscription = interval(60 * 1000).subscribe(() => {
+        this.updateAll();
+      });
+    } else if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  private updateAll() {
+    this._cities.forEach((city) => this.update(city));
+  }
+
   update(city: City) {
     this.locationDetailsService.get(city).subscribe({
       next: (locationDetails) => {
-        const cityIndex = this._locationDetailsList.findIndex(({ id }) => id === locationDetails.id);
+        const cityIndex = this._locationDetailsList.findIndex(
+          ({ id }) => id === locationDetails.id
+        );
 
         if (cityIndex === -1) {
           this._locationDetailsList.push(locationDetails);
@@ -40,7 +58,9 @@ export class GlobalControllerService {
   private updateInPosition(index: number, locationDetails: LocationDetails) {
     const old = this._locationDetailsList[index];
 
-    if (old.infoTimestamp.getTime() === locationDetails.infoTimestamp.getTime()) {
+    if (
+      old.infoTimestamp.getTime() === locationDetails.infoTimestamp.getTime()
+    ) {
       return;
     }
 
