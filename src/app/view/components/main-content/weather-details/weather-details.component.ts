@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { CardComponent } from '../../card/card.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-weather-details',
   standalone: true,
-  imports: [CardComponent],
+  imports: [CardComponent, CommonModule],
   templateUrl: './weather-details.component.html',
   styleUrl: './weather-details.component.scss',
 })
@@ -21,7 +22,7 @@ export class WeatherDetailsComponent {
 
   formatHourMin(date: Date | undefined) {
     return this.formatDate(date, {
-      timeStyle: 'short'
+      timeStyle: 'short',
     });
   }
 

@@ -1,53 +1,71 @@
-<div class="p-4 main-content d-flex flex-column">
+<div class="p-4 main-content d-flex justify-content-center">
   <div class="constrained-container">
     <app-header [locationDetails]="locationDetails" />
     <div class="row d-flex flex-fill pt-4 flex-nowrap main-content-body">
       <div class="trends-grid">
         <app-weather-metrics-trend
           [value]="locationDetails?.weatherConditions?.wind?.toFixed(1)"
-          [oldValue]="selectedLocationPreviousState?.weatherConditions?.wind?.toFixed(1)"
-          unit="from 220°"
+          [oldValue]="
+            selectedLocationPreviousState?.weatherConditions?.wind?.toFixed(1)
+          "
+          [unit]="
+            'from ' + locationDetails?.weatherConditions?.windDirection + '°'
+          "
           label="Wind Speed"
         />
         <app-weather-metrics-trend
           [value]="locationDetails?.weatherConditions?.visibility"
-          [oldValue]="selectedLocationPreviousState?.weatherConditions?.visibility"
+          [oldValue]="
+            selectedLocationPreviousState?.weatherConditions?.visibility
+          "
           unit="m"
           label="Visibility"
         />
         <app-weather-metrics-trend
           [value]="locationDetails?.weatherConditions?.temperature"
-          [oldValue]="selectedLocationPreviousState?.weatherConditions?.temperature"
+          [oldValue]="
+            selectedLocationPreviousState?.weatherConditions?.temperature
+          "
           unit="°F"
           label="Temperature"
         />
         <app-weather-metrics-trend
           [value]="locationDetails?.weatherConditions?.feelsLike"
-          [oldValue]="selectedLocationPreviousState?.weatherConditions?.feelsLike"
+          [oldValue]="
+            selectedLocationPreviousState?.weatherConditions?.feelsLike
+          "
           unit="°F"
           label="Feels Like"
         />
         <app-weather-metrics-trend
           [value]="locationDetails?.weatherConditions?.temperatureMin"
-          [oldValue]="selectedLocationPreviousState?.weatherConditions?.temperatureMin"
+          [oldValue]="
+            selectedLocationPreviousState?.weatherConditions?.temperatureMin
+          "
           unit="°F"
           label="Minimum Temperature"
         />
         <app-weather-metrics-trend
           [value]="locationDetails?.weatherConditions?.temperatureMax"
-          [oldValue]="selectedLocationPreviousState?.weatherConditions?.temperatureMax"
+          [oldValue]="
+            selectedLocationPreviousState?.weatherConditions?.temperatureMax
+          "
           unit="°F"
           label="Maximum Temperature"
         />
         <app-weather-metrics-trend
           [value]="locationDetails?.weatherConditions?.pressure"
-          [oldValue]="selectedLocationPreviousState?.weatherConditions?.pressure"
+          [oldValue]="
+            selectedLocationPreviousState?.weatherConditions?.pressure
+          "
           unit="Pa"
           label="Pressure"
         />
         <app-weather-metrics-trend
           [value]="locationDetails?.weatherConditions?.humidity"
-          [oldValue]="selectedLocationPreviousState?.weatherConditions?.humidity"
+          [oldValue]="
+            selectedLocationPreviousState?.weatherConditions?.humidity
+          "
           unit="%"
           label="Humidity"
         />

@@ -3,6 +3,12 @@
   font-weight: 800;
 }
 
+.details-content {
+  & p:not(.fw-bold) {
+    font-size: 15px;
+  }
+}
+
 .first-letter-capitalized:first-letter {
   text-transform: uppercase;
 }

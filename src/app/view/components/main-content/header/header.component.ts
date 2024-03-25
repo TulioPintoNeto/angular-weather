@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { GlobalControllerService } from '../../../controllers/global-controller.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

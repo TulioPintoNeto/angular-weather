@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, delay, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class CitiesService {
     return this.httpClient
       .get<CityModel[]>(this.buildPath(country))
       .pipe(map(this.toCities(country)));
+      // .pipe(delay(10000), map(this.toCities(country)));
   }
 
   private buildPath(country: Country) {

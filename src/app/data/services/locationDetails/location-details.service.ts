@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, delay, map } from 'rxjs';
+
+let firstRequest = true;
 
 @Injectable({
   providedIn: 'root',
@@ -8,10 +10,22 @@ import { Observable, map } from 'rxjs';
 export class LocationDetailsService {
   constructor(private httpClient: HttpClient) {}
 
+  private get delayTime(): number {
+    if (firstRequest) {
+      firstRequest = false;
+      return 2000;
+    }
+
+    return 0;
+  }
+
   get(city: City): Observable<LocationDetails> {
-    return this.httpClient
-      .get<LocationDetailsModel>(this.buildPath(city))
-      .pipe(map(this.toLocationDetails(city)));
+    return (
+      this.httpClient
+        .get<LocationDetailsModel>(this.buildPath(city))
+        // Delay intentional to demonstrate skeleton as API is too fast
+        .pipe(delay(this.delayTime), map(this.toLocationDetails(city)))
+    );
   }
 
   private buildPath({ name, country: { code } }: City) {

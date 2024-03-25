@@ -3,24 +3,60 @@
   <div class="p-4 pt-2 details-content">
     <div class="mb-4">
       <p class="mb-2 fw-bold">General</p>
-      <p class="mb-1">Updated At: {{ formatDateTime(locationDetails?.infoTimestamp) }}</p>
-      <p class="mb-1">Sunrise: {{ formatHourMin(locationDetails?.sunnyTime?.sunrise) }}</p>
-      <p class="mb-1">Sunset: {{ formatHourMin(locationDetails?.sunnyTime?.sunset) }}</p>
-      <p class="mb-1">Timezone: {{ locationDetails?.timezone }}</p>
+      <p class="mb-1">
+        Updated At:
+        <span [ngClass]="{ 'placeholder w10': !locationDetails }">{{
+          formatDateTime(locationDetails?.infoTimestamp)
+        }}</span>
+      </p>
+      <p class="mb-1">
+        Sunrise:
+        <span [ngClass]="{ 'placeholder w7': !locationDetails }">{{
+          formatHourMin(locationDetails?.sunnyTime?.sunrise)
+        }}</span>
+      </p>
+      <p class="mb-1">
+        Sunset:
+        <span [ngClass]="{ 'placeholder w7': !locationDetails }">{{
+          formatHourMin(locationDetails?.sunnyTime?.sunset)
+        }}</span>
+      </p>
+      <p class="mb-1">
+        Timezone:
+        <span [ngClass]="{ 'placeholder w2': !locationDetails }">{{
+          locationDetails?.timezone
+        }}</span>
+      </p>
     </div>
     <div class="mb-4">
       <p class="mb-2 fw-bold">Coordinates</p>
       <p class="mb-1">
-        Longitude: {{ locationDetails?.coordinates?.longitude?.toFixed(2) }}
+        Longitude:
+        <span [ngClass]="{ 'placeholder w7': !locationDetails }">{{
+          locationDetails?.coordinates?.longitude?.toFixed(2)
+        }}</span>
       </p>
       <p class="mb-1">
-        Latidude: {{ locationDetails?.coordinates?.latitude?.toFixed(2) }}
+        Latidude:
+        <span [ngClass]="{ 'placeholder w7': !locationDetails }">{{
+          locationDetails?.coordinates?.latitude?.toFixed(2)
+        }}</span>
       </p>
     </div>
     <div>
       <p class="mb-2 fw-bold">Weather</p>
-      <p class="mb-1">Clouds {{ locationDetails?.weather?.clouds }}%</p>
-      <p class="mb-1 first-letter-capitalized">{{ locationDetails?.weather?.skyStatus }}</p>
+      <p class="mb-1">
+        Clouds
+        <span [ngClass]="{ 'placeholder w5': !locationDetails }">{{
+          locationDetails?.weather?.clouds
+        }}</span
+        >%
+      </p>
+      <p class="mb-1 first-letter-capitalized">
+        <span [ngClass]="{ 'placeholder w8': !locationDetails }">{{
+          locationDetails?.weather?.skyStatus
+        }}</span>
+      </p>
     </div>
   </div>
 </app-card>

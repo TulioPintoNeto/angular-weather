@@ -1,7 +1,9 @@
 <app-card [verticalCenter]="true">
   <div class="d-flex align-items-center justify-content-between">
     <div class="d-flex flex-column">
-      <p class="mb-0 value">{{ value || '-' }} {{ unit }}</p>
+      <p [ngClass]="{ 'mb-0 value': true, placeholder: !value }">
+        {{ value }} {{ unit }} 
+      </p>
       <p class="mb-0 label">{{ label }}</p>
     </div>
     <i
