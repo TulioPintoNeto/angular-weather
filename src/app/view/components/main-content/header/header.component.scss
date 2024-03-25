@@ -22,6 +22,12 @@
   color: gray;
 }
 
-.button {
+.button-wrapper {
   margin-right: -0.75rem;
+}
+
+.loading-wrapper {
+  position: absolute;
+  left: calc(50% - 30px / 2);
+  top: calc(50% - 30px / 2);
 }

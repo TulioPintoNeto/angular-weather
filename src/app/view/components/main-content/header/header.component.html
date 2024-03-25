@@ -27,5 +27,22 @@
     </nav>
   </div>
 
-  <button type="button" class="btn button" (click)="refresh()">Refresh</button>
+  <div class="position-relative button-wrapper">
+    <div
+      [ngClass]="{
+        'position-absolute loading-wrapper': true,
+        'd-none': !loading
+      }"
+    >
+      <app-loading />
+    </div>
+    <button
+      type="button"
+      class="btn button"
+      [disabled]="loading"
+      (click)="refresh()"
+    >
+      Refresh
+    </button>
+  </div>
 </div>

@@ -1,0 +1,46 @@
+@import '../../styles/constants';
+
+$size: 30px;
+$border: 3px;
+
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: $size;
+  height: $size;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: calc($size - 2 * $border);
+  height: calc($size - 2 * $border);
+  margin: $border;
+  border: $border solid $darkBlue;
+  border-radius: 50%;
+  animation: lds-ring 0.7s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: $darkBlue transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.2s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.13s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.05s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

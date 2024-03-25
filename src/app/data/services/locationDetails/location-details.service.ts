@@ -16,14 +16,14 @@ export class LocationDetailsService {
       return 2000;
     }
 
-    return 0;
+    return 200;
   }
 
   get(city: City): Observable<LocationDetails> {
     return (
       this.httpClient
         .get<LocationDetailsModel>(this.buildPath(city))
-        // Delay intentional to demonstrate skeleton as API is too fast
+        // Delay intentional to demonstrate loading states as API is too fast
         .pipe(delay(this.delayTime), map(this.toLocationDetails(city)))
     );
   }

@@ -12,6 +12,8 @@ const initialCity = {
   providedIn: 'root',
 })
 export class GlobalControllerService {
+  loading: boolean = false;
+
   private _cities: City[] = [initialCity];
   private _locationDetailsList: LocationDetails[] = [];
   private _previousLocationDetailsList: LocationDetails[] = [];
@@ -41,6 +43,7 @@ export class GlobalControllerService {
   }
 
   update(city: City) {
+    this.loading = true;
     this.locationDetailsService.get(city).subscribe({
       next: (locationDetails) => {
         const cityIndex = this._locationDetailsList.findIndex(
@@ -53,6 +56,7 @@ export class GlobalControllerService {
           this.updateInPosition(cityIndex, locationDetails);
         }
       },
+      complete: () => this.loading = false,
     });
   }
 
