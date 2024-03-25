@@ -8,7 +8,7 @@ This Angular application integrates with a weather API to display weather data f
 - Display of weather information for multiple cities.
 - User-friendly interface to view weather details at a glance.
 
-## Installation
+## Running locally
 
 1. Clone the repository.
 2. Navigate to the project directory.
@@ -17,4 +17,6 @@ This Angular application integrates with a weather API to display weather data f
 
 ## Technologies Used
 - Angular
+- TypeScript
 - Weather API (provide the name of the weather API used)
+- Bootstrap / Bootstrap Angular
