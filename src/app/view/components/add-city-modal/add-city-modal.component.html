@@ -42,7 +42,12 @@
     >
       Close
     </button>
-    <button type="button" class="btn btn-outline-primary" (click)="onSubmit()">
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      (click)="onSubmit()"
+      [disabled]="!addCityForm.value.city"
+    >
       Add
     </button>
   </div>
